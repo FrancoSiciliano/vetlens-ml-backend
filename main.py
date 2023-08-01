@@ -39,7 +39,7 @@ async def make_prediction(image: UploadFile = File(...)):
     for idx, pred in enumerate(predictions[0]):
         pred_dict[diseases[idx]] = float(pred)
 
-    return {"predictions": pred_dict}
+    return pred_dict
 
 
 if __name__ == '__main__':

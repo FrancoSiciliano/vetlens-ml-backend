@@ -11,7 +11,7 @@ app = FastAPI()
 
 model_path = os.path.abspath(os.path.join('model', 'dogsskindiseaseswithother_v1_xception.h5'))
 model = load_model(model_path)
-diseases = ['dermatitis piotraumatica', 'dermatofitosis', 'miasis', 'otras']
+diseases = ['dermatitis_piotraumatica', 'dermatofitosis', 'miasis', 'otras']
 
 
 @app.post("/infer/")

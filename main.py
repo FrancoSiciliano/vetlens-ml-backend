@@ -10,10 +10,8 @@ import os
 
 app = FastAPI()
 
-model_path = os.path.abspath(os.path.join('model', 'vetlens_enb2_v1_5c.h5'))
-model = load_model(model_path, compile=False)
-model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=1e-5), loss=tf.losses.CategoricalCrossentropy(),
-              metrics=['accuracy'])
+model_path = os.path.abspath(os.path.join('model', 'vetlens_enb2_v2_5c.h5'))
+model = load_model(model_path)
 diseases = ['dermatitis_piotraumatica', 'dermatofitosis', 'miasis', 'otras', 'sin_problemas']
 
 
@@ -31,7 +29,6 @@ async def make_prediction(image: UploadFile = File(...)):
     image = Image.open(io.BytesIO(image_data))
     image = image.resize((224, 224))
     image = np.array(image)
-    # image = tf.keras.applications.xception.preprocess_input(image)
 
     image = np.expand_dims(image, axis=0)
 
@@ -52,7 +49,7 @@ async def make_prediction(image: UploadFile = File(...)):
             winner_class = key
             max_pred = final_inference[key]
 
-    if max_pred < 0.60 and winner_class != 'no_discernible' or final_inference['no_discernible'] > 0.30:
+    if max_pred < 0.70 and winner_class != 'no_discernible' or final_inference['no_discernible'] > 0.30:
         final_inference.update({"result": 'no_discernible'})
     else:
         final_inference.update({"result": winner_class})

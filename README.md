@@ -1,3 +1,9 @@
+# Información académica
+Este repositorio forma parte del Proyecto Final de Ingeniería de los estudiantes Gamietea Julián y Siciliano Franco de la carrera Ingeniería en Informática de la Universidad Argentina de la Empresa. Contactos: 
+
+Julián Gamietea: jgamietea@uade.edu.ar
+
+Franco Siciliano: frsiciliano@uade.edu.ar
 # VetLens Machine Learning Service Backend
 **Versión de Pyhton necesaria: 3.9**
 
